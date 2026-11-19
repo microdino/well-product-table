@@ -31,7 +31,7 @@ class Options {
 	 * @return array Modified plugin action links.
 	 */
 	public function plugin_action_links_callback( $links ) {
-		$links['prta_options'] = '<a href="' . esc_url( admin_url( 'admin.php?page=prta-dashboard' ) ) . '">' . esc_html__( 'Options', 'table-for-woocommerce' ) . '</a>';
+		$links['prta_options'] = '<a href="' . esc_url( admin_url( 'admin.php?page=prta-dashboard' ) ) . '">' . esc_html__( 'Options', 'well-product-table' ) . '</a>';
 
 		return $links;
 	}
@@ -45,8 +45,8 @@ class Options {
 	public static function menu_page_callback() {
         add_submenu_page(
             'edit.php?post_type=product',
-            __( 'Product Table', 'table-for-woocommerce' ),
-            __( 'Product Table', 'table-for-woocommerce' ),
+            __( 'Product Table', 'well-product-table' ),
+            __( 'Product Table', 'well-product-table' ),
             'manage_options',
             'prta-dashboard',
             array( self::class, 'tab_page_content' ),

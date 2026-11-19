@@ -1,4 +1,4 @@
-=== Product Table ===
+=== Well Product Table ===
 Contributors: wellplugins
 Tags: woocommerce, product table, product list, bulk order, shop table
 Requires at least: 6.2
@@ -12,7 +12,7 @@ Create searchable WooCommerce product tables with a shortcode or display them on
 
 == Description ==
 
-Product Table lets you build tables for WooCommerce products. Choose the columns, products, sort order, filters, and purchase controls for each table. Display a table with a shortcode or use it on selected WooCommerce shop and product archive pages.
+Well Product Table lets you build tables for WooCommerce products. Choose the columns, products, sort order, filters, and purchase controls for each table. Display a table with a shortcode or use it on selected WooCommerce shop and product archive pages.
 
 Features include:
 
@@ -30,7 +30,7 @@ The table scrolls horizontally when its columns do not fit a narrow screen. WooC
 == Installation ==
 
 1. Install and activate WooCommerce.
-2. Install and activate Product Table through **Plugins > Add New**, or upload the plugin folder to `wp-content/plugins/` and activate it.
+2. Install and activate Well Product Table through **Plugins > Add New**, or upload the plugin folder to `wp-content/plugins/` and activate it.
 3. Open **Products > Product Table** in the WordPress admin.
 4. Select **Add New Table**, enter a name, configure the table, and save it.
 5. For a shortcode table, copy the shortcode shown after saving and paste it into a page or post. To replace WooCommerce archive content, choose **Display on Shop Specific Page** and select the pages to use.
@@ -51,7 +51,7 @@ Yes. Choose a variation dropdown or separate variation rows in the table setting
 
 = Does uninstalling remove my tables and settings? =
 
-Only if **Permanently delete all WooCommerce Product Table settings and data when deleting the plugin** is enabled in the plugin settings. Deactivating the plugin does not delete the data.
+Only if **Permanently delete all Well Product Table settings and data when deleting the plugin** is enabled in the plugin settings. Deactivating the plugin does not delete the data.
 
 == Changelog ==
 

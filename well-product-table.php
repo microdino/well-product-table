@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Product Table
- * Description: Product Table
+ * Plugin Name: Well Product Table
+ * Description: Create searchable WooCommerce product tables for shortcodes and shop archives.
  * Version:     1.0.0
  * Author:      JOJO
  * Author URI:  https://www.jojo.com/about
- * Text Domain: table-for-woocommerce
+ * Text Domain: well-product-table
  * Requires at least: 6.2
  * Tested up to: 6.8
  * WC requires at least: 8.2

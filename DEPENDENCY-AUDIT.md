@@ -46,5 +46,5 @@ The lockfile was synchronized, also removing its stale @wordpress/block-editor r
 ## Verification
 
 - `npm ls --depth=0` passes with the updated lockfile.
-- `npm run build:zip` runs ESLint, builds the admin bundle, and creates `dist/table-for-woocommerce-1.0.0.zip`.
+- `npm run build:zip` runs ESLint, builds the admin bundle, and creates `dist/well-product-table-1.0.0.zip`.
 - The ZIP contains the plugin entry point, PHP classes, templates, compiled assets, readable source, and build manifests. It excludes `node_modules`, tests, development notes, lint configuration, and the unused JavaScript source map.

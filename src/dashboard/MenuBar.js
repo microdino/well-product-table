@@ -55,8 +55,8 @@ const MenuBar = () => {
 		setUrl( nav === 'settings' ? '#/settings' : '' );
 	};
 	const menuItems = [
-		{ to: 'dashboard', label: __( 'Dashboard', 'table-for-woocommerce' ) },
-		{ to: 'settings', label: __( 'Settings', 'table-for-woocommerce' ) },
+		{ to: 'dashboard', label: __( 'Dashboard', 'well-product-table' ) },
+		{ to: 'settings', label: __( 'Settings', 'well-product-table' ) },
 	];
 
 	return (
@@ -86,8 +86,8 @@ const MenuBar = () => {
 								width="55"
 								src={ localize.url + 'assets/img/logo.svg' }
 								alt={ __(
-									'Product Tables for WooCommerce',
-									'table-for-woocommerce'
+									'Well Product Table',
+									'well-product-table'
 								) }
 							/>
 							<Text
@@ -128,10 +128,7 @@ const MenuBar = () => {
 									)
 								}
 							>
-								{ __(
-									'Documentation',
-									'table-for-woocommerce'
-								) }
+								{ __( 'Documentation', 'well-product-table' ) }
 							</Button>
 							<Button
 								icon="sos"
@@ -143,7 +140,7 @@ const MenuBar = () => {
 									)
 								}
 							>
-								{ __( 'Get Support', 'table-for-woocommerce' ) }
+								{ __( 'Get Support', 'well-product-table' ) }
 							</Button>
 						</HStack>
 					</HStack>

@@ -11,9 +11,9 @@ class CartSettings {
 
 	public static function defaults() {
 		return array(
-			'addToCartText' => __( 'Add to cart', 'table-for-woocommerce' ),
-			'multipleAddToCartSingular' => __( 'Add 1 item for {total}', 'table-for-woocommerce' ),
-			'multipleAddToCartPlural' => __( 'Add {items} items for {total}', 'table-for-woocommerce' ),
+			'addToCartText' => __( 'Add to cart', 'well-product-table' ),
+			'multipleAddToCartSingular' => __( 'Add 1 item for {total}', 'well-product-table' ),
+			'multipleAddToCartPlural' => __( 'Add {items} items for {total}', 'well-product-table' ),
 			'addToCartLocation' => 'above',
 			'selectAllProducts' => true,
 			'descriptionLength' => 15,
@@ -61,28 +61,28 @@ class CartSettings {
 			'callback' => function ( $request ) {
 				if ( 'POST' === $request->get_method() ) {
 					$values = $request->get_json_params();
-					if ( ! is_array( $values ) ) return new \WP_Error( 'prta_invalid_settings', __( 'Invalid settings.', 'table-for-woocommerce' ), array( 'status' => 400 ) );
+					if ( ! is_array( $values ) ) return new \WP_Error( 'prta_invalid_settings', __( 'Invalid settings.', 'well-product-table' ), array( 'status' => 400 ) );
 					$settings = self::get();
 					foreach ( array( 'addToCartText', 'multipleAddToCartSingular', 'multipleAddToCartPlural' ) as $key ) {
 						if ( array_key_exists( $key, $values ) ) {
-							if ( ! is_string( $values[ $key ] ) || strlen( $values[ $key ] ) > 1000 ) return new \WP_Error( 'prta_invalid_text', __( 'Setting text must be a string of at most 1000 characters.', 'table-for-woocommerce' ), array( 'status' => 400 ) );
+							if ( ! is_string( $values[ $key ] ) || strlen( $values[ $key ] ) > 1000 ) return new \WP_Error( 'prta_invalid_text', __( 'Setting text must be a string of at most 1000 characters.', 'well-product-table' ), array( 'status' => 400 ) );
 							$settings[ $key ] = sanitize_text_field( $values[ $key ] ) ?: self::defaults()[ $key ];
 						}
 					}
 					if ( isset( $values['addToCartLocation'] ) ) {
-						if ( ! in_array( $values['addToCartLocation'], array( 'above', 'below', 'all' ), true ) ) return new \WP_Error( 'prta_invalid_location', __( 'Invalid cart button location.', 'table-for-woocommerce' ), array( 'status' => 400 ) );
+						if ( ! in_array( $values['addToCartLocation'], array( 'above', 'below', 'all' ), true ) ) return new \WP_Error( 'prta_invalid_location', __( 'Invalid cart button location.', 'well-product-table' ), array( 'status' => 400 ) );
 						$settings['addToCartLocation'] = $values['addToCartLocation'];
 					}
 					foreach ( array( 'selectAllProducts', 'stickyHeader', 'hideTableHeading', 'showTableFooter', 'showHiddenProducts', 'showSearchBox', 'deleteDataOnUninstall', 'enableCaching' ) as $key ) {
 						if ( array_key_exists( $key, $values ) ) {
-							if ( ! is_bool( $values[ $key ] ) ) return new \WP_Error( 'prta_invalid_boolean', __( 'Checkbox settings must be true or false.', 'table-for-woocommerce' ), array( 'status' => 400 ) );
+							if ( ! is_bool( $values[ $key ] ) ) return new \WP_Error( 'prta_invalid_boolean', __( 'Checkbox settings must be true or false.', 'well-product-table' ), array( 'status' => 400 ) );
 							$settings[ $key ] = $values[ $key ];
 						}
 					}
 					foreach ( array( 'descriptionLength' => 0, 'productsPerPage' => 1, 'cacheDuration' => 1 ) as $key => $minimum ) {
 						if ( array_key_exists( $key, $values ) ) {
 							$maximum = 'descriptionLength' === $key ? 10000 : ( 'productsPerPage' === $key ? 1000 : 8760 );
-							if ( ! is_numeric( $values[ $key ] ) || (float) $values[ $key ] != (int) $values[ $key ] || (int) $values[ $key ] < $minimum || (float) $values[ $key ] > $maximum ) return new \WP_Error( 'prta_invalid_number', __( 'Enter a valid whole number for each numeric setting.', 'table-for-woocommerce' ), array( 'status' => 400 ) );
+							if ( ! is_numeric( $values[ $key ] ) || (float) $values[ $key ] != (int) $values[ $key ] || (int) $values[ $key ] < $minimum || (float) $values[ $key ] > $maximum ) return new \WP_Error( 'prta_invalid_number', __( 'Enter a valid whole number for each numeric setting.', 'well-product-table' ), array( 'status' => 400 ) );
 							$settings[ $key ] = (int) $values[ $key ];
 						}
 					}

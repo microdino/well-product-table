@@ -21,37 +21,34 @@ const API_PATH = '/wp/v2/adpro_option';
 const COLUMN_OPTIONS = [
 	[ 'id', 'ID' ],
 	[ 'sku', 'SKU' ],
-	[ 'name', __( 'Name', 'table-for-woocommerce' ) ],
-	[ 'description', __( 'Description', 'table-for-woocommerce' ) ],
-	[ 'summary', __( 'Summary', 'table-for-woocommerce' ) ],
-	[ 'date', __( 'Published date', 'table-for-woocommerce' ) ],
-	[ 'modified', __( 'Last modified date', 'table-for-woocommerce' ) ],
-	[ 'image', __( 'Image', 'table-for-woocommerce' ) ],
-	[ 'stock', __( 'Stock', 'table-for-woocommerce' ) ],
-	[ 'reviews', __( 'Reviews', 'table-for-woocommerce' ) ],
-	[ 'weight', __( 'Weight', 'table-for-woocommerce' ) ],
-	[ 'dimensions', __( 'Dimensions', 'table-for-woocommerce' ) ],
-	[ 'price', __( 'Price', 'table-for-woocommerce' ) ],
-	[ 'buy', __( 'Buy', 'table-for-woocommerce' ) ],
-	[ 'button', __( 'Button', 'table-for-woocommerce' ) ],
-	[ 'total', __( 'Total', 'table-for-woocommerce' ) ],
-	[ 'categories', __( 'Categories', 'table-for-woocommerce' ) ],
-	[ 'tags', __( 'Tags', 'table-for-woocommerce' ) ],
-	[ 'tax:pa_color', __( 'Color', 'table-for-woocommerce' ) ],
-	[ 'tax:pa_size', __( 'Size', 'table-for-woocommerce' ) ],
-	[ 'author', __( 'Author', 'table-for-woocommerce' ) ],
+	[ 'name', __( 'Name', 'well-product-table' ) ],
+	[ 'description', __( 'Description', 'well-product-table' ) ],
+	[ 'summary', __( 'Summary', 'well-product-table' ) ],
+	[ 'date', __( 'Published date', 'well-product-table' ) ],
+	[ 'modified', __( 'Last modified date', 'well-product-table' ) ],
+	[ 'image', __( 'Image', 'well-product-table' ) ],
+	[ 'stock', __( 'Stock', 'well-product-table' ) ],
+	[ 'reviews', __( 'Reviews', 'well-product-table' ) ],
+	[ 'weight', __( 'Weight', 'well-product-table' ) ],
+	[ 'dimensions', __( 'Dimensions', 'well-product-table' ) ],
+	[ 'price', __( 'Price', 'well-product-table' ) ],
+	[ 'buy', __( 'Buy', 'well-product-table' ) ],
+	[ 'button', __( 'Button', 'well-product-table' ) ],
+	[ 'total', __( 'Total', 'well-product-table' ) ],
+	[ 'categories', __( 'Categories', 'well-product-table' ) ],
+	[ 'tags', __( 'Tags', 'well-product-table' ) ],
+	[ 'tax:pa_color', __( 'Color', 'well-product-table' ) ],
+	[ 'tax:pa_size', __( 'Size', 'well-product-table' ) ],
+	[ 'author', __( 'Author', 'well-product-table' ) ],
 ].map( ( [ value, label ] ) => ( { value, label } ) );
 const FILTER_OPTIONS = [
-	[ 'categories', __( 'Categories', 'table-for-woocommerce' ) ],
-	[ 'tags', __( 'Tags', 'table-for-woocommerce' ) ],
-	[ 'tax:pa_color', __( 'Color', 'table-for-woocommerce' ) ],
-	[ 'tax:pa_size', __( 'Size', 'table-for-woocommerce' ) ],
-	[ 'product_type', __( 'Product Type', 'table-for-woocommerce' ) ],
-	[
-		'product_visibility',
-		__( 'Product Visibility', 'table-for-woocommerce' ),
-	],
-	[ 'author', __( 'Author', 'table-for-woocommerce' ) ],
+	[ 'categories', __( 'Categories', 'well-product-table' ) ],
+	[ 'tags', __( 'Tags', 'well-product-table' ) ],
+	[ 'tax:pa_color', __( 'Color', 'well-product-table' ) ],
+	[ 'tax:pa_size', __( 'Size', 'well-product-table' ) ],
+	[ 'product_type', __( 'Product Type', 'well-product-table' ) ],
+	[ 'product_visibility', __( 'Product Visibility', 'well-product-table' ) ],
+	[ 'author', __( 'Author', 'well-product-table' ) ],
 ].map( ( [ value, label ] ) => ( { value, label } ) );
 const makeItem = ( value, options ) => {
 	const option = options.find( ( item ) => item.value === value );
@@ -159,18 +156,15 @@ const QueryPicker = ( { label, type, value = [], onChange } ) => {
 			label={ label }
 			placeholder={
 				type === 'products'
-					? __(
-							'Search and select products…',
-							'table-for-woocommerce'
-					  )
+					? __( 'Search and select products…', 'well-product-table' )
 					: type === 'categories'
 					? __(
 							'Search and select categories…',
-							'table-for-woocommerce'
+							'well-product-table'
 					  )
 					: type === 'tags'
-					? __( 'Search and select tags…', 'table-for-woocommerce' )
-					: __( 'Search and select brands…', 'table-for-woocommerce' )
+					? __( 'Search and select tags…', 'well-product-table' )
+					: __( 'Search and select brands…', 'well-product-table' )
 			}
 			value={ value.map( tokenFor ) }
 			suggestions={ options
@@ -253,10 +247,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 					<span
 						className="prta-drag-handle"
 						aria-hidden="true"
-						title={ __(
-							'Drag to reorder',
-							'table-for-woocommerce'
-						) }
+						title={ __( 'Drag to reorder', 'well-product-table' ) }
 					>
 						⠿
 					</span>
@@ -265,7 +256,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 						__nextHasNoMarginBottom
 						aria-label={ sprintf(
 							/* translators: %s: column or filter name. */
-							__( 'Title for %s', 'table-for-woocommerce' ),
+							__( 'Title for %s', 'well-product-table' ),
 							item.label
 						) }
 						value={ item.label }
@@ -285,7 +276,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 							icon="arrow-up-alt2"
 							label={ sprintf(
 								/* translators: %s: column or filter name. */
-								__( 'Move %s up', 'table-for-woocommerce' ),
+								__( 'Move %s up', 'well-product-table' ),
 								item.label
 							) }
 							disabled={ index === 0 }
@@ -295,7 +286,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 							icon="arrow-down-alt2"
 							label={ sprintf(
 								/* translators: %s: column or filter name. */
-								__( 'Move %s down', 'table-for-woocommerce' ),
+								__( 'Move %s down', 'well-product-table' ),
 								item.label
 							) }
 							disabled={ index === items.length - 1 }
@@ -307,7 +298,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 						icon="dismiss"
 						label={ sprintf(
 							/* translators: %s: column or filter name. */
-							__( 'Remove %s', 'table-for-woocommerce' ),
+							__( 'Remove %s', 'well-product-table' ),
 							item.label
 						) }
 						onClick={ () =>
@@ -324,7 +315,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 				<SelectControl
 					label={ __(
 						'Add a column or filter',
-						'table-for-woocommerce'
+						'well-product-table'
 					) }
 					__next40pxDefaultSize
 					__nextHasNoMarginBottom
@@ -347,7 +338,7 @@ const DynamicFieldList = ( { items, options, placeholder, onChange } ) => {
 					disabled={ ! selected }
 					onClick={ add }
 				>
-					{ __( 'Add', 'table-for-woocommerce' ) }
+					{ __( 'Add', 'well-product-table' ) }
 				</Button>
 			</div>
 		</div>
@@ -449,7 +440,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 				type: 'error',
 				message: __(
 					'Please enter a table name.',
-					'table-for-woocommerce'
+					'well-product-table'
 				),
 			} );
 			return;
@@ -459,7 +450,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 				type: 'error',
 				message: __(
 					'Select at least one table column.',
-					'table-for-woocommerce'
+					'well-product-table'
 				),
 			} );
 			return;
@@ -484,21 +475,15 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 			setSnackbar( {
 				type: 'success',
 				message: activeTableId
-					? __(
-							'Table updated successfully.',
-							'table-for-woocommerce'
-					  )
-					: __(
-							'Table created successfully.',
-							'table-for-woocommerce'
-					  ),
+					? __( 'Table updated successfully.', 'well-product-table' )
+					: __( 'Table created successfully.', 'well-product-table' ),
 			} );
 		} catch ( requestError ) {
 			setSnackbar( {
 				type: 'error',
 				message:
 					requestError.message ||
-					__( 'Unable to save table.', 'table-for-woocommerce' ),
+					__( 'Unable to save table.', 'well-product-table' ),
 			} );
 		} finally {
 			setSaving( false );
@@ -506,7 +491,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 	};
 	const shortcode = activeTableId
 		? `[product_table id="${ activeTableId }"]`
-		: __( 'Available after saving', 'table-for-woocommerce' );
+		: __( 'Available after saving', 'well-product-table' );
 	const copyShortcode = async () => {
 		if ( activeTableId ) {
 			await navigator.clipboard.writeText( shortcode );
@@ -548,8 +533,8 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 							onRemove={ () => setSnackbar( null ) }
 						>
 							{ snackbar.type === 'success'
-								? __( 'Success:', 'table-for-woocommerce' )
-								: __( 'Error:', 'table-for-woocommerce' ) }
+								? __( 'Success:', 'well-product-table' )
+								: __( 'Error:', 'well-product-table' ) }
 							{ snackbar.message }
 						</Snackbar>
 					</div>
@@ -557,21 +542,21 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 				<Section
 					title={
 						activeTableId
-							? __( 'Edit Table', 'table-for-woocommerce' )
-							: __( 'Add New Table', 'table-for-woocommerce' )
+							? __( 'Edit Table', 'well-product-table' )
+							: __( 'Add New Table', 'well-product-table' )
 					}
 				>
 					<TextControl
-						label={ __( 'Table Name', 'table-for-woocommerce' ) }
+						label={ __( 'Table Name', 'well-product-table' ) }
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						value={ settings.tableName }
 						onChange={ ( value ) => set( 'tableName', value ) }
 					/>
 				</Section>
-				<Section title={ __( 'Display In', 'table-for-woocommerce' ) }>
+				<Section title={ __( 'Display In', 'well-product-table' ) }>
 					<RadioControl
-						label={ __( 'Display In', 'table-for-woocommerce' ) }
+						label={ __( 'Display In', 'well-product-table' ) }
 						hideLabelFromVision
 						selected={ settings.displayIn }
 						onChange={ ( value ) => set( 'displayIn', value ) }
@@ -579,14 +564,14 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 							{
 								label: __(
 									'Display Using Shortcode',
-									'table-for-woocommerce'
+									'well-product-table'
 								),
 								value: 'shortcode',
 							},
 							{
 								label: __(
 									'Display on Shop Specific Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								),
 								value: 'shop',
 							},
@@ -600,7 +585,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 									__nextHasNoMarginBottom
 									label={ __(
 										'Shortcode',
-										'table-for-woocommerce'
+										'well-product-table'
 									) }
 									value={ shortcode }
 									readOnly
@@ -613,11 +598,11 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 										copied
 											? __(
 													'Copied',
-													'table-for-woocommerce'
+													'well-product-table'
 											  )
 											: __(
 													'Copy shortcode',
-													'table-for-woocommerce'
+													'well-product-table'
 											  )
 									}
 									disabled={ ! activeTableId }
@@ -628,7 +613,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								<SelectControl
 									label={ __(
 										'Product Query',
-										'table-for-woocommerce'
+										'well-product-table'
 									) }
 									value={ settings.queryType }
 									onChange={ ( value ) =>
@@ -639,35 +624,35 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 											value: 'all',
 											label: __(
 												'All Products',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 										},
 										{
 											value: 'categories',
 											label: __(
 												'Specific Categories',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 										},
 										{
 											value: 'tags',
 											label: __(
 												'Specific Tags',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 										},
 										{
 											value: 'products',
 											label: __(
 												'Specific Products',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 										},
 										{
 											value: 'brands',
 											label: __(
 												'Specific Brands',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 										},
 									] }
@@ -678,7 +663,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 									<QueryPicker
 										label={ __(
 											'Select items',
-											'table-for-woocommerce'
+											'well-product-table'
 										) }
 										type={ settings.queryType }
 										value={
@@ -711,7 +696,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 										<QueryPicker
 											label={ __(
 												'Exclude Specific Products',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 											type="products"
 											value={ settings.excludeProducts }
@@ -724,7 +709,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 										<QueryPicker
 											label={ __(
 												'Exclude Categories',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 											type="categories"
 											value={ settings.excludeCategories }
@@ -745,7 +730,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Shop Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								checked={ settings.shopPage }
 								onChange={ ( value ) =>
@@ -756,7 +741,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Product Search Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								checked={ settings.searchPage }
 								onChange={ ( value ) =>
@@ -767,7 +752,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Product Category Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								checked={ settings.categoryPage }
 								onChange={ ( value ) =>
@@ -778,7 +763,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Product Tag Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								checked={ settings.tagPage }
 								onChange={ ( value ) =>
@@ -789,7 +774,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Product Attributes Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								checked={ settings.attributesPage }
 								onChange={ ( value ) =>
@@ -800,7 +785,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Product Brand Page',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								checked={ settings.brandPage }
 								onChange={ ( value ) =>
@@ -810,18 +795,18 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 						</div>
 					) }
 				</Section>
-				<Section title={ __( 'Columns', 'table-for-woocommerce' ) }>
+				<Section title={ __( 'Columns', 'well-product-table' ) }>
 					<DynamicFieldList
 						items={ settings.columns }
 						options={ COLUMN_OPTIONS }
 						placeholder={ __(
 							'Choose a Column',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 						onChange={ ( value ) => set( 'columns', value ) }
 					/>
 				</Section>
-				<Section title={ __( 'Others', 'table-for-woocommerce' ) }>
+				<Section title={ __( 'Others', 'well-product-table' ) }>
 					<ToggleControl
 						__nextHasNoMarginBottom
 						checked={ settings.quantitySelector }
@@ -830,7 +815,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 						}
 						label={ __(
 							'Enable Quantity Selector',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 					/>
 					<SelectControl
@@ -838,7 +823,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 						__nextHasNoMarginBottom
 						label={ __(
 							'Variation Display Style',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 						value={ settings.variationStyle }
 						options={ [
@@ -846,21 +831,21 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 								value: 'link',
 								label: __(
 									'Read more link to product page',
-									'table-for-woocommerce'
+									'well-product-table'
 								),
 							},
 							{
 								value: 'dropdown',
 								label: __(
 									'Display variations as dropdown',
-									'table-for-woocommerce'
+									'well-product-table'
 								),
 							},
 							{
 								value: 'separate',
 								label: __(
 									'Display variations as separate rows',
-									'table-for-woocommerce'
+									'well-product-table'
 								),
 							},
 						] }
@@ -871,7 +856,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 						__nextHasNoMarginBottom
 						label={ __(
 							'Products per page',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 						value={ settings.productsPerPage }
 						onChange={ ( value ) =>
@@ -881,10 +866,10 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 					/>
 				</Section>
 				<Section
-					title={ __( 'Search Filters', 'table-for-woocommerce' ) }
+					title={ __( 'Search Filters', 'well-product-table' ) }
 					description={ __(
 						'Choose the filters to show above the table.',
-						'table-for-woocommerce'
+						'well-product-table'
 					) }
 				>
 					<div className="prta-search-filter-options">
@@ -921,67 +906,52 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 						<SelectControl
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
-							label={ __( 'Sort By', 'table-for-woocommerce' ) }
+							label={ __( 'Sort By', 'well-product-table' ) }
 							value={ settings.sortBy }
 							options={ [
 								{
 									label: __(
 										'Default WooCommerce',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									value: 'default',
 								},
 								{
-									label: __( 'ID', 'table-for-woocommerce' ),
+									label: __( 'ID', 'well-product-table' ),
 									value: 'id',
 								},
 								{
-									label: __(
-										'Name',
-										'table-for-woocommerce'
-									),
+									label: __( 'Name', 'well-product-table' ),
 									value: 'name',
 								},
 								{
 									label: __(
 										'Published',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									value: 'published',
 								},
 								{
 									label: __(
 										'Modified',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									value: 'modified',
 								},
 								{
-									label: __(
-										'Sales',
-										'table-for-woocommerce'
-									),
+									label: __( 'Sales', 'well-product-table' ),
 									value: 'sales',
 								},
 								{
-									label: __(
-										'Rating',
-										'table-for-woocommerce'
-									),
+									label: __( 'Rating', 'well-product-table' ),
 									value: 'rating',
 								},
 								{
-									label: __(
-										'Random',
-										'table-for-woocommerce'
-									),
+									label: __( 'Random', 'well-product-table' ),
 									value: 'random',
 								},
 								{
-									label: __(
-										'Price',
-										'table-for-woocommerce'
-									),
+									label: __( 'Price', 'well-product-table' ),
 									value: 'price',
 								},
 							] }
@@ -992,28 +962,28 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Sort Direction',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.sortDirection }
 							options={ [
 								{
 									label: __(
 										'Automatic',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									value: 'automatic',
 								},
 								{
 									label: __(
 										'Ascending',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									value: 'ascending',
 								},
 								{
 									label: __(
 										'Descending',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									value: 'descending',
 								},
@@ -1025,10 +995,10 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 					</div>
 				</Section>
 				<Section
-					title={ __( 'Content', 'table-for-woocommerce' ) }
+					title={ __( 'Content', 'well-product-table' ) }
 					description={ __(
 						'Settings for table actions and descriptions.',
-						'table-for-woocommerce'
+						'well-product-table'
 					) }
 				>
 					<NumberControl
@@ -1036,7 +1006,7 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 						__nextHasNoMarginBottom
 						label={ __(
 							'Description Length (Words)',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 						value={ settings.descriptionLength }
 						onChange={ ( value ) =>
@@ -1053,8 +1023,8 @@ const Single = ( { tableId, onTableIdResolved } ) => {
 							disabled={ saving }
 						>
 							{ saving
-								? __( 'Saving…', 'table-for-woocommerce' )
-								: __( 'Save Table', 'table-for-woocommerce' ) }
+								? __( 'Saving…', 'well-product-table' )
+								: __( 'Save Table', 'well-product-table' ) }
 						</Button>
 					</div>
 				</Section>

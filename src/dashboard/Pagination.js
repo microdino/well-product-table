@@ -14,7 +14,7 @@ const Pagination = ( { currentPage, totalPages, onPageChange } ) => {
 				__next40pxDefaultSize
 				variant="secondary"
 				icon={ 'arrow-left-alt2' }
-				label={ __( 'Previous page', 'table-for-woocommerce' ) }
+				label={ __( 'Previous page', 'well-product-table' ) }
 				onClick={ () => goToPage( currentPage - 1 ) }
 				disabled={ currentPage === 1 }
 			/>
@@ -38,7 +38,7 @@ const Pagination = ( { currentPage, totalPages, onPageChange } ) => {
 				__next40pxDefaultSize
 				variant="secondary"
 				icon={ 'arrow-right-alt2' }
-				label={ __( 'Next page', 'table-for-woocommerce' ) }
+				label={ __( 'Next page', 'well-product-table' ) }
 				onClick={ () => goToPage( currentPage + 1 ) }
 				disabled={ currentPage === totalPages }
 			/>

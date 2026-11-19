@@ -25,15 +25,12 @@ import {
 
 const API_PATH = '/wp/v2/adpro_option';
 const SHOP_PAGE_OPTIONS = [
-	[ 'shopPage', __( 'Shop Page', 'table-for-woocommerce' ) ],
-	[ 'searchPage', __( 'Product Search Page', 'table-for-woocommerce' ) ],
-	[ 'categoryPage', __( 'Product Category Page', 'table-for-woocommerce' ) ],
-	[ 'tagPage', __( 'Product Tag Page', 'table-for-woocommerce' ) ],
-	[
-		'attributesPage',
-		__( 'Product Attributes Page', 'table-for-woocommerce' ),
-	],
-	[ 'brandPage', __( 'Product Brand Page', 'table-for-woocommerce' ) ],
+	[ 'shopPage', __( 'Shop Page', 'well-product-table' ) ],
+	[ 'searchPage', __( 'Product Search Page', 'well-product-table' ) ],
+	[ 'categoryPage', __( 'Product Category Page', 'well-product-table' ) ],
+	[ 'tagPage', __( 'Product Tag Page', 'well-product-table' ) ],
+	[ 'attributesPage', __( 'Product Attributes Page', 'well-product-table' ) ],
+	[ 'brandPage', __( 'Product Brand Page', 'well-product-table' ) ],
 ];
 const getSettings = ( post ) => {
 	try {
@@ -81,7 +78,7 @@ const Dashboard = ( { onEdit } ) => {
 		} catch ( requestError ) {
 			setError(
 				requestError.message ||
-					__( 'Unable to load tables.', 'table-for-woocommerce' )
+					__( 'Unable to load tables.', 'well-product-table' )
 			);
 		} finally {
 			setLoading( false );
@@ -192,17 +189,14 @@ const Dashboard = ( { onEdit } ) => {
 					<VStack style={ { width: '100%' } } spacing={ 3 }>
 						<HStack alignment="edge">
 							<Heading level={ 3 }>
-								{ __( 'Table List', 'table-for-woocommerce' ) }
+								{ __( 'Table List', 'well-product-table' ) }
 							</Heading>
 							<Button
 								icon="plus-alt2"
 								variant="primary"
 								onClick={ () => onEdit( null ) }
 							>
-								{ __(
-									'Add New Table',
-									'table-for-woocommerce'
-								) }
+								{ __( 'Add New Table', 'well-product-table' ) }
 							</Button>
 						</HStack>
 						<Divider />
@@ -216,28 +210,28 @@ const Dashboard = ( { onEdit } ) => {
 										{
 											label: __(
 												'- Actions -',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 											value: '',
 										},
 										{
 											label: __(
 												'Delete',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 											value: 'delete',
 										},
 										{
 											label: __(
 												'Enable',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 											value: 'enable',
 										},
 										{
 											label: __(
 												'Disable',
-												'table-for-woocommerce'
+												'well-product-table'
 											),
 											value: 'disable',
 										},
@@ -252,7 +246,7 @@ const Dashboard = ( { onEdit } ) => {
 									}
 									onClick={ applyBulk }
 								>
-									{ __( 'Apply', 'table-for-woocommerce' ) }
+									{ __( 'Apply', 'well-product-table' ) }
 								</Button>
 							</HStack>
 							<SearchControl
@@ -260,7 +254,7 @@ const Dashboard = ( { onEdit } ) => {
 								value={ search }
 								placeholder={ __(
 									'Search…',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 								onChange={ ( value ) => {
 									setPage( 1 );
@@ -290,7 +284,7 @@ const Dashboard = ( { onEdit } ) => {
 								tabIndex={ 0 }
 								aria-label={ __(
 									'Product tables',
-									'table-for-woocommerce'
+									'well-product-table'
 								) }
 							>
 								<div className="prta-dashboard-table">
@@ -299,7 +293,7 @@ const Dashboard = ( { onEdit } ) => {
 											__nextHasNoMarginBottom
 											label={ __(
 												'Select all tables on this page',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 											className="prta-selection-checkbox"
 											checked={
@@ -320,33 +314,30 @@ const Dashboard = ( { onEdit } ) => {
 										/>
 										<Text weight={ 500 }>
 											#
-											{ __(
-												'ID',
-												'table-for-woocommerce'
-											) }
+											{ __( 'ID', 'well-product-table' ) }
 										</Text>
 										<Text weight={ 500 }>
 											{ __(
 												'Table Name',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 										</Text>
 										<Text weight={ 500 }>
 											{ __(
 												'Status',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 										</Text>
 										<Text weight={ 500 }>
 											{ __(
 												'Display In',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 										</Text>
 										<Text weight={ 500 }>
 											{ __(
 												'Shortcode',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 										</Text>
 										<Text
@@ -355,7 +346,7 @@ const Dashboard = ( { onEdit } ) => {
 										>
 											{ __(
 												'Action',
-												'table-for-woocommerce'
+												'well-product-table'
 											) }
 										</Text>
 									</div>
@@ -364,7 +355,7 @@ const Dashboard = ( { onEdit } ) => {
 											<Text>
 												{ __(
 													'No tables found.',
-													'table-for-woocommerce'
+													'well-product-table'
 												) }
 											</Text>
 										</>
@@ -383,7 +374,7 @@ const Dashboard = ( { onEdit } ) => {
 														/* translators: %s: table name. */
 														__(
 															'Select %s',
-															'table-for-woocommerce'
+															'well-product-table'
 														),
 														table.title?.raw ||
 															settings.tableName ||
@@ -427,7 +418,7 @@ const Dashboard = ( { onEdit } ) => {
 													{ table.title?.rendered ||
 														__(
 															'(no title)',
-															'table-for-woocommerce'
+															'well-product-table'
 														) }
 												</Button>
 												<span>
@@ -478,11 +469,11 @@ const Dashboard = ( { onEdit } ) => {
 															  )
 															: __(
 																	'No pages selected',
-																	'table-for-woocommerce'
+																	'well-product-table'
 															  )
 														: __(
 																'Shortcode',
-																'table-for-woocommerce'
+																'well-product-table'
 														  ) }
 												</div>
 												<span className="prta-dashboard-shortcode">
@@ -516,11 +507,11 @@ const Dashboard = ( { onEdit } ) => {
 																	table.id
 																		? __(
 																				'Copied',
-																				'table-for-woocommerce'
+																				'well-product-table'
 																		  )
 																		: __(
 																				'Copy shortcode',
-																				'table-for-woocommerce'
+																				'well-product-table'
 																		  )
 																}
 																onCopy={ () =>
@@ -542,13 +533,13 @@ const Dashboard = ( { onEdit } ) => {
 														icon="ellipsis"
 														label={ __(
 															'Table actions',
-															'table-for-woocommerce'
+															'well-product-table'
 														) }
 														controls={ [
 															{
 																title: __(
 																	'Edit',
-																	'table-for-woocommerce'
+																	'well-product-table'
 																),
 																icon: 'edit',
 																onClick: () =>
@@ -559,7 +550,7 @@ const Dashboard = ( { onEdit } ) => {
 															{
 																title: __(
 																	'Copy',
-																	'table-for-woocommerce'
+																	'well-product-table'
 																),
 																icon: 'admin-page',
 																isDisabled:
@@ -573,7 +564,7 @@ const Dashboard = ( { onEdit } ) => {
 															{
 																title: __(
 																	'Delete',
-																	'table-for-woocommerce'
+																	'well-product-table'
 																),
 																icon: 'trash',
 																onClick: () =>
@@ -610,8 +601,8 @@ const Dashboard = ( { onEdit } ) => {
 					role="alertdialog"
 					title={
 						pendingDelete.length === 1
-							? __( 'Delete table?', 'table-for-woocommerce' )
-							: __( 'Delete tables?', 'table-for-woocommerce' )
+							? __( 'Delete table?', 'well-product-table' )
+							: __( 'Delete tables?', 'well-product-table' )
 					}
 					size="small"
 					onRequestClose={ () =>
@@ -625,18 +616,15 @@ const Dashboard = ( { onEdit } ) => {
 									/* translators: %s: Product table name. */
 									__(
 										'Delete “%s”? This cannot be undone.',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 									pendingTable.title?.raw ||
 										pendingTable.title?.rendered ||
-										__(
-											'(no title)',
-											'table-for-woocommerce'
-										)
+										__( '(no title)', 'well-product-table' )
 							  )
 							: __(
 									'Are you sure you want to delete the selected tables? This cannot be undone.',
-									'table-for-woocommerce'
+									'well-product-table'
 							  ) }
 					</p>
 					<HStack justify="flex-end" spacing={ 2 }>
@@ -644,7 +632,7 @@ const Dashboard = ( { onEdit } ) => {
 							disabled={ deleting }
 							onClick={ () => setPendingDelete( [] ) }
 						>
-							{ __( 'Cancel', 'table-for-woocommerce' ) }
+							{ __( 'Cancel', 'well-product-table' ) }
 						</Button>
 						<Button
 							variant="primary"
@@ -653,7 +641,7 @@ const Dashboard = ( { onEdit } ) => {
 							disabled={ deleting }
 							onClick={ deleteTables }
 						>
-							{ __( 'Delete', 'table-for-woocommerce' ) }
+							{ __( 'Delete', 'well-product-table' ) }
 						</Button>
 					</HStack>
 				</Modal>

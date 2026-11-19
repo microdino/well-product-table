@@ -56,7 +56,7 @@ const Settings = () => {
 			setSettings( saved );
 			setNotice( {
 				status: 'success',
-				message: __( 'Settings saved.', 'table-for-woocommerce' ),
+				message: __( 'Settings saved.', 'well-product-table' ),
 			} );
 		} catch ( error ) {
 			setNotice( { status: 'error', message: error.message } );
@@ -79,7 +79,7 @@ const Settings = () => {
 			isBusy={ saving }
 			onClick={ saveSettings }
 		>
-			{ __( 'Save Settings', 'table-for-woocommerce' ) }
+			{ __( 'Save Settings', 'well-product-table' ) }
 		</Button>
 	);
 	return (
@@ -101,11 +101,11 @@ const Settings = () => {
 					<SettingsSection
 						title={ __(
 							'Add to Cart Settings',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 						description={ __(
 							'Customize purchase controls for shortcode and shop page tables.',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 					>
 						<TextControl
@@ -113,7 +113,7 @@ const Settings = () => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Add to Cart Text',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.addToCartText ?? '' }
 							onChange={ ( v ) => set( 'addToCartText', v ) }
@@ -123,11 +123,11 @@ const Settings = () => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Multiple Add to Cart Text (Singular)',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							help={ __(
 								'Use {items} for quantity and {total} for the selected products’ total.',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.multipleAddToCartSingular ?? '' }
 							onChange={ ( v ) =>
@@ -139,11 +139,11 @@ const Settings = () => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Multiple Add to Cart Text (Plural)',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							help={ __(
 								'Use {items} for quantity and {total} for the selected products’ total.',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.multipleAddToCartPlural ?? '' }
 							onChange={ ( v ) =>
@@ -155,11 +155,11 @@ const Settings = () => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Add to Cart Location',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							help={ __(
 								'Position of the button for adding selected products.',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.addToCartLocation ?? 'above' }
 							onChange={ ( v ) => set( 'addToCartLocation', v ) }
@@ -168,21 +168,21 @@ const Settings = () => {
 									value: 'above',
 									label: __(
 										'Above Table',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 								},
 								{
 									value: 'below',
 									label: __(
 										'Below Table',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 								},
 								{
 									value: 'all',
 									label: __(
 										'Above & Below Table',
-										'table-for-woocommerce'
+										'well-product-table'
 									),
 								},
 							] }
@@ -191,18 +191,18 @@ const Settings = () => {
 							'selectAllProducts',
 							__(
 								'Select all products in the table header',
-								'table-for-woocommerce'
+								'well-product-table'
 							)
 						) }
 					</SettingsSection>
 					<SettingsSection
 						title={ __(
 							'Table Content Settings',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 						description={ __(
 							'Control table headings, product visibility, and content defaults.',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 					>
 						<NumberControl
@@ -210,11 +210,11 @@ const Settings = () => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Description Length (Words)',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							help={ __(
 								'Default for new tables and tables without a saved description length. Individual table settings take precedence.',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.descriptionLength ?? 15 }
 							min={ 0 }
@@ -222,39 +222,33 @@ const Settings = () => {
 						/>
 						{ toggle(
 							'stickyHeader',
-							__( 'Show sticky header', 'table-for-woocommerce' )
+							__( 'Show sticky header', 'well-product-table' )
 						) }
 						{ toggle(
 							'hideTableHeading',
-							__( 'Hide table heading', 'table-for-woocommerce' )
+							__( 'Hide table heading', 'well-product-table' )
 						) }
 						{ toggle(
 							'showTableFooter',
-							__( 'Show table footer', 'table-for-woocommerce' )
+							__( 'Show table footer', 'well-product-table' )
 						) }
 						{ toggle(
 							'showHiddenProducts',
-							__(
-								'Show hidden products',
-								'table-for-woocommerce'
-							)
+							__( 'Show hidden products', 'well-product-table' )
 						) }
 						{ toggle(
 							'selectAllProducts',
 							__(
 								'Select all products in the table header',
-								'table-for-woocommerce'
+								'well-product-table'
 							)
 						) }
 					</SettingsSection>
 					<SettingsSection
-						title={ __(
-							'Other Settings',
-							'table-for-woocommerce'
-						) }
+						title={ __( 'Other Settings', 'well-product-table' ) }
 						description={ __(
 							'Set pagination defaults, search, caching, and uninstall behavior.',
-							'table-for-woocommerce'
+							'well-product-table'
 						) }
 					>
 						<NumberControl
@@ -262,11 +256,11 @@ const Settings = () => {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Products per page',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							help={ __(
 								'Default for new tables and tables without a saved page size. Individual table settings take precedence.',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.productsPerPage ?? 20 }
 							min={ 1 }
@@ -276,18 +270,18 @@ const Settings = () => {
 							'showSearchBox',
 							__(
 								'Search box in table header',
-								'table-for-woocommerce'
+								'well-product-table'
 							)
 						) }
 						<CheckboxControl
 							__nextHasNoMarginBottom
 							label={ __(
-								'Permanently delete all WooCommerce Product Table settings and data when deleting the plugin',
-								'table-for-woocommerce'
+								'Permanently delete all Well Product Table settings and data when deleting the plugin',
+								'well-product-table'
 							) }
 							help={ __(
 								'Unchecked by default. Applies only when the plugin is deleted, not when it is deactivated.',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							checked={ Boolean(
 								settings.deleteDataOnUninstall
@@ -298,14 +292,14 @@ const Settings = () => {
 						/>
 						{ toggle(
 							'enableCaching',
-							__( 'Enable Caching', 'table-for-woocommerce' )
+							__( 'Enable Caching', 'well-product-table' )
 						) }
 						<NumberControl
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							label={ __(
 								'Cache Duration (Hours)',
-								'table-for-woocommerce'
+								'well-product-table'
 							) }
 							value={ settings.cacheDuration ?? 10 }
 							min={ 1 }

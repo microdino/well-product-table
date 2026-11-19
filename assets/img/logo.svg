@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-  <title>Product Table</title>
+  <title>Well Product Table</title>
   <rect width="40" height="40" rx="10" fill="#243B53"/>
   <rect x="9" y="10" width="22" height="20" rx="3" stroke="#FFFFFF" stroke-width="2"/>
   <path d="M9 17h22M9 23.5h22M17 17v13" stroke="#FFFFFF" stroke-width="2"/>

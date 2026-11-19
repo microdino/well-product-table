@@ -41,7 +41,7 @@ class Init {
 				$type = sanitize_key( $request->get_param( 'type' ) );
 				$search = sanitize_text_field( $request->get_param( 'search' ) );
 				$include = array_values( array_unique( array_filter( array_map( 'absint', explode( ',', (string) $request->get_param( 'include' ) ) ) ) ) );
-				if ( count( $include ) > 1000 ) return new \WP_Error( 'prta_too_many_ids', __( 'Select at most 1000 items.', 'table-for-woocommerce' ), array( 'status' => 400 ) );
+				if ( count( $include ) > 1000 ) return new \WP_Error( 'prta_too_many_ids', __( 'Select at most 1000 items.', 'well-product-table' ), array( 'status' => 400 ) );
 				if ( 'products' === $type ) {
 					$posts = get_posts( array( 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => 50, 's' => $search ) );
 					if ( $include ) $posts = array_merge( $posts, get_posts( array( 'post_type' => 'product', 'post_status' => 'publish', 'posts_per_page' => count( $include ), 'post__in' => $include ) ) );
@@ -119,7 +119,7 @@ class Init {
 				wp_enqueue_script( 'prta-editor-script', PRTA_URL . 'assets/js/backend.js', array( 'wp-api-fetch', 'wp-components', 'wp-element', 'wp-i18n' ), md5_file( PRTA_PATH . 'assets/js/backend.js' ), true );
 				wp_localize_script( 'prta-editor-script', 'localize', array( 'url' => PRTA_URL, 'version' => PRTA_VER ) );
 				wp_enqueue_style( 'wp-components' );
-				wp_set_script_translations( 'prta-editor-script', 'table-for-woocommerce', PRTA_PATH . 'languages/' );
+				wp_set_script_translations( 'prta-editor-script', 'well-product-table', PRTA_PATH . 'languages/' );
 			}
 		}
 	}
@@ -131,7 +131,7 @@ class Init {
 	 * @return void
 	 */
 	public function activation_redirect( $plugin ) {
-		if ( 'table-for-woocommerce/table-for-woocommerce.php' === $plugin && current_user_can( 'activate_plugins' ) ) {
+		if ( PRTA_BASE === $plugin && current_user_can( 'activate_plugins' ) ) {
 			if ( wp_doing_ajax() || is_network_admin() || isset( $_GET['activate-multi'] ) || isset( $_POST['action'] ) && 'activate-selected' == $_POST['action'] ) { // phpcs:ignore
 				return;
 			}

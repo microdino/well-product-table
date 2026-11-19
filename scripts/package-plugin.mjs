@@ -8,7 +8,8 @@ const root = dirname( dirname( fileURLToPath( import.meta.url ) ) );
 const manifest = JSON.parse( readFileSync( join( root, 'package.json' ), 'utf8' ) );
 const slug = manifest.name;
 const version = manifest.version;
-const header = readFileSync( join( root, 'table-for-woocommerce.php' ), 'utf8' );
+const entryPoint = slug + '.php';
+const header = readFileSync( join( root, entryPoint ), 'utf8' );
 const readme = readFileSync( join( root, 'readme.txt' ), 'utf8' );
 const pluginVersion = header.match( /^ \* Version:\s*(\S+)/m )?.[ 1 ];
 const stableTag = readme.match( /^Stable tag:\s*(\S+)/mi )?.[ 1 ];
@@ -21,7 +22,7 @@ if ( pluginVersion !== version || stableTag !== version ) {
 }
 
 const files = [
-	'table-for-woocommerce.php',
+	entryPoint,
 	'uninstall.php',
 	'readme.txt',
 	'changelog.txt',
