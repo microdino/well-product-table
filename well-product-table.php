@@ -18,13 +18,13 @@
  * @package WowAddons
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit();
 
 // Define Variables
-define( 'PRTA_VER', '1.0.0' );
-define( 'PRTA_URL', plugin_dir_url( __FILE__ ) );
-define( 'PRTA_BASE', plugin_basename( __FILE__ ) );
-define( 'PRTA_PATH', plugin_dir_path( __FILE__ ) );
+define('PRTA_VER', '1.0.0');
+define('PRTA_URL', plugin_dir_url(__FILE__));
+define('PRTA_BASE', plugin_basename(__FILE__));
+define('PRTA_PATH', plugin_dir_path(__FILE__));
 
 require_once PRTA_PATH . 'includes/class-init.php';
 new PRTA\Includes\Init();

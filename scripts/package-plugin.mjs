@@ -1,24 +1,37 @@
-import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
+import {
+	createWriteStream,
+	existsSync,
+	mkdirSync,
+	readFileSync,
+	readdirSync,
+	renameSync,
+	rmSync,
+	statSync,
+} from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { once } from 'node:events';
 import yazl from 'yazl';
 
 const root = dirname( dirname( fileURLToPath( import.meta.url ) ) );
-const manifest = JSON.parse( readFileSync( join( root, 'package.json' ), 'utf8' ) );
+const manifest = JSON.parse(
+	readFileSync( join( root, 'package.json' ), 'utf8' )
+);
 const slug = manifest.name;
 const version = manifest.version;
 const entryPoint = slug + '.php';
 const header = readFileSync( join( root, entryPoint ), 'utf8' );
 const readme = readFileSync( join( root, 'readme.txt' ), 'utf8' );
 const pluginVersion = header.match( /^ \* Version:\s*(\S+)/m )?.[ 1 ];
-const stableTag = readme.match( /^Stable tag:\s*(\S+)/mi )?.[ 1 ];
+const stableTag = readme.match( /^Stable tag:\s*(\S+)/im )?.[ 1 ];
 
 if ( ! /^[a-z0-9-]+$/.test( slug ) || ! /^\d+\.\d+\.\d+$/.test( version ) ) {
 	throw new Error( 'Package name or version is invalid.' );
 }
 if ( pluginVersion !== version || stableTag !== version ) {
-	throw new Error( 'package.json, the plugin header, and readme.txt must have the same version.' );
+	throw new Error(
+		'package.json, the plugin header, and readme.txt must have the same version.'
+	);
 }
 
 const files = [
@@ -33,9 +46,15 @@ function addDirectory( directory ) {
 	if ( ! existsSync( join( root, directory ) ) ) {
 		return;
 	}
-	for ( const entry of readdirSync( join( root, directory ), { withFileTypes: true } ) ) {
+	for ( const entry of readdirSync( join( root, directory ), {
+		withFileTypes: true,
+	} ) ) {
 		const path = join( directory, entry.name );
-		if ( entry.name.startsWith( '.' ) || path === join( 'src', 'dashboard', 'style.css' ) || path.endsWith( '.js.map' ) ) {
+		if (
+			entry.name.startsWith( '.' ) ||
+			path === join( 'src', 'dashboard', 'style.css' ) ||
+			path.endsWith( '.js.map' )
+		) {
 			continue;
 		}
 		if ( entry.isDirectory() ) {
@@ -47,7 +66,14 @@ function addDirectory( directory ) {
 		}
 	}
 }
-for ( const directory of [ 'includes', 'templates', 'assets', 'src', 'languages', 'scripts' ] ) {
+for ( const directory of [
+	'includes',
+	'templates',
+	'assets',
+	'src',
+	'languages',
+	'scripts',
+] ) {
 	addDirectory( directory );
 }
 for ( const path of files ) {
@@ -72,18 +98,26 @@ archive.outputStream.pipe( output );
 
 for ( const path of files.sort() ) {
 	const source = join( root, path );
-	archive.addFile( source, `${ slug }/${ relative( root, source ).replaceAll( '\\', '/' ) }`, {
-		mtime: new Date( '1980-01-01T00:00:00Z' ),
-		mode: 0o100644,
-		compressionLevel: 9,
-	} );
+	archive.addFile(
+		source,
+		`${ slug }/${ relative( root, source ).replaceAll( '\\', '/' ) }`,
+		{
+			mtime: new Date( '1980-01-01T00:00:00Z' ),
+			mode: 0o100644,
+			compressionLevel: 9,
+		}
+	);
 }
 
 try {
 	archive.end();
 	await done;
 	renameSync( temporaryPath, outputPath );
-	console.log( `Created ${ relative( root, outputPath ) } with ${ files.length } files.` );
+	console.log(
+		`Created ${ relative( root, outputPath ) } with ${
+			files.length
+		} files.`
+	);
 } catch ( error ) {
 	rmSync( temporaryPath, { force: true } );
 	throw error;

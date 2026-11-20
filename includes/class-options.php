@@ -8,61 +8,68 @@
 
 namespace PRTA\Includes;
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit();
 
 /**
  * Options class.
  */
 class Options {
+    /**
+     * Setup class.
+     *
+     * @since v.1.0.0
+     */
+    public function __construct() {
+        add_action('admin_menu', [$this, 'menu_page_callback']);
 
-	/**
-	 * Setup class.
-	 *
-	 * @since v.1.0.0
-	 */
-	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'menu_page_callback' ) );
+        add_filter('plugin_action_links_' . PRTA_BASE, [
+            $this,
+            'plugin_action_links_callback',
+        ]);
+    }
 
-		add_filter( 'plugin_action_links_' . PRTA_BASE, array( $this, 'plugin_action_links_callback' ) );
-	}
+    /**
+     * Adds quick action links below the plugin name.
+     * @return array Modified plugin action links.
+     */
+    public function plugin_action_links_callback($links) {
+        $links['prta_options'] =
+            '<a href="' .
+            esc_url(admin_url('admin.php?page=prta-dashboard')) .
+            '">' .
+            esc_html__('Options', 'well-product-table') .
+            '</a>';
 
-	/**
-	 * Adds quick action links below the plugin name.
-	 * @return array Modified plugin action links.
-	 */
-	public function plugin_action_links_callback( $links ) {
-		$links['prta_options'] = '<a href="' . esc_url( admin_url( 'admin.php?page=prta-dashboard' ) ) . '">' . esc_html__( 'Options', 'well-product-table' ) . '</a>';
+        return $links;
+    }
 
-		return $links;
-	}
-
-	/**
-	 * Admin Menu Option Page
-	 *
-	 * @since v.1.0.0
-	 * @return void
-	 */
-	public static function menu_page_callback() {
+    /**
+     * Admin Menu Option Page
+     *
+     * @since v.1.0.0
+     * @return void
+     */
+    public static function menu_page_callback() {
         add_submenu_page(
             'edit.php?post_type=product',
-            __( 'Product Table', 'well-product-table' ),
-            __( 'Product Table', 'well-product-table' ),
+            __('Product Table', 'well-product-table'),
+            __('Product Table', 'well-product-table'),
             'manage_options',
             'prta-dashboard',
-            array( self::class, 'tab_page_content' ),
+            [self::class, 'tab_page_content'],
         );
-	}
+    }
 
-
-	/**
-	 * Initial Plugin Setting
-	 *
-	 * @since v.1.0.0
-	 * @return void
-	 */
-	public static function tab_page_content() {
-		if ( ! current_user_can( 'manage_options' ) ) return;
-		echo '<div id="prta-dashboard"></div>'; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-	}
-
+    /**
+     * Initial Plugin Setting
+     *
+     * @since v.1.0.0
+     * @return void
+     */
+    public static function tab_page_content() {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        echo '<div id="prta-dashboard"></div>'; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+    }
 }
